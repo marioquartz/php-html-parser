@@ -9,7 +9,7 @@
         {
             "name": "Gilles Paquette",
             "email": "paquettg@gmail.com",
-            "homepage": "http://gillespaquette.ca"
+            "homepage": "https://gillespaquette.ca"
         }
     ],
     "require": {
@@ -28,7 +28,8 @@
         "phpunit/phpunit": "^8.0 || ^9.0",
         "mockery/mockery": "^1.2",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "phan/phan": "^5.2"
+        "phan/phan": "^5.2",
+        "phpstan/phpstan": "^1.1"
     },
     "autoload": {
         "psr-4": {
