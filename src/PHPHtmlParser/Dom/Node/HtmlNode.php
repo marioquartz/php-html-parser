@@ -6,6 +6,7 @@ namespace PHPHtmlParser\Dom\Node;
 
 use PHPHtmlParser\Dom\Tag;
 use PHPHtmlParser\Exceptions\ChildNotFoundException;
+use PHPHtmlParser\Exceptions\CircularException;
 use PHPHtmlParser\Exceptions\UnknownChildTypeException;
 
 /**
@@ -70,10 +71,7 @@ class HtmlNode extends InnerNode
         parent::__construct();
     }
 
-    /**
-     * @param bool $htmlSpecialCharsDecode
-     */
-    public function setHtmlSpecialCharsDecode($htmlSpecialCharsDecode = false): void
+    public function setHtmlSpecialCharsDecode(bool $htmlSpecialCharsDecode): void
     {
         parent::setHtmlSpecialCharsDecode($htmlSpecialCharsDecode);
         $this->tag->setHtmlSpecialCharsDecode($htmlSpecialCharsDecode);
@@ -236,6 +234,8 @@ class HtmlNode extends InnerNode
 
     /**
      * Returns all children of this html node.
+     *
+     * @throws CircularException
      */
     protected function getIteratorArray(): array
     {

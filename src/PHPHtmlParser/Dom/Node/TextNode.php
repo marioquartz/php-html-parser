@@ -67,10 +67,7 @@ class TextNode extends LeafNode
         parent::__construct();
     }
 
-    /**
-     * @param bool $htmlSpecialCharsDecode
-     */
-    public function setHtmlSpecialCharsDecode($htmlSpecialCharsDecode = false): void
+    public function setHtmlSpecialCharsDecode(bool $htmlSpecialCharsDecode): void
     {
         parent::setHtmlSpecialCharsDecode($htmlSpecialCharsDecode);
         $this->tag->setHtmlSpecialCharsDecode($htmlSpecialCharsDecode);
@@ -103,6 +100,11 @@ class TextNode extends LeafNode
         }
 
         return $text;
+    }
+
+    public function innerText(): string
+    {
+        return $this->text();
     }
 
     /**

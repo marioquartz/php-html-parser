@@ -8,6 +8,7 @@ use PHPHtmlParser\Contracts\Selector\SelectorInterface;
 use PHPHtmlParser\Dom\Tag;
 use PHPHtmlParser\Exceptions\ChildNotFoundException;
 use PHPHtmlParser\Exceptions\CircularException;
+use PHPHtmlParser\Exceptions\LogicalException;
 use PHPHtmlParser\Exceptions\ParentNotFoundException;
 use PHPHtmlParser\Exceptions\Tag\AttributeNotFoundException;
 use PHPHtmlParser\Finder;
@@ -122,6 +123,8 @@ abstract class AbstractNode
             case 'parent':
                 return $this->getParent();
         }
+
+        return null;
     }
 
     /**
@@ -137,7 +140,7 @@ abstract class AbstractNode
     /**
      * @param bool $htmlSpecialCharsDecode
      */
-    public function setHtmlSpecialCharsDecode($htmlSpecialCharsDecode = false): void
+    public function setHtmlSpecialCharsDecode(bool $htmlSpecialCharsDecode): void
     {
         $this->htmlSpecialCharsDecode = $htmlSpecialCharsDecode;
     }
@@ -164,7 +167,8 @@ abstract class AbstractNode
      * Sets the parent node.
      *
      * @throws ChildNotFoundException
-     * @throws CircularException
+     * @throws CircularException|
+     * @throws LogicalException
      */
     public function setParent(InnerNode $parent): AbstractNode
     {
@@ -239,6 +243,8 @@ abstract class AbstractNode
 
             return $this->parent->getAncestor($id);
         }
+
+        return null;
     }
 
     /**
@@ -442,7 +448,7 @@ abstract class AbstractNode
                 return $nodes[$nth];
             }
 
-            return;
+            return null;
         }
 
         return $nodes;
