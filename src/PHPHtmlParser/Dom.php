@@ -30,8 +30,6 @@ class Dom implements DomInterface
 {
     use RootAccessTrait;
 
-    public $outerHtml;
-
     /**
      * The charset we would like the output to be in.
      *
@@ -239,9 +237,9 @@ class Dom implements DomInterface
         return $this->find('.' . $class);
     }
 
-    public function getOuterHtml(): string
+    public function outerHtml(): string
     {
-        return $this->outerHtml;
+        return $this->root->outerHtml;
     }
 
     /**
